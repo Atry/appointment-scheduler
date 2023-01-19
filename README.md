@@ -19,7 +19,7 @@ Note that multiple time libraries are introduced, because:
 - `date-fns` is the most light-weight solution to manipulate `Date`.
 - We need a library to handle timezone, because a doctor might in a timezone different from the server's timezone. However, `date-fns` does not support timezone well.
   - `date-fns`'s sibling, `date-fns-tz`, is buggy for handling daylight saving time.
-  - `moment-timezone` is good for timezone handling, but the cost is that we have to use different API for manipulating local time and UTC time, respectively.
+  - `moment-timezone` is good for timezone handling, but the drawback is that we have to use a different API for manipulating local time and UTC time, respectively.
 
 ## Directory layout
 
