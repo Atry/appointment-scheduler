@@ -28,6 +28,11 @@ model DailyWorkingTime {
   doctorId Int
 
   /// The time that the doctor starts to work, in HH:mm:ss.SSS format
+  ///
+  /// Note that it represents the clock time without date part, not the offset from
+  /// midnight, because storing the offset would result supprising behavior when
+  /// shifting daylight saving time, e.g. 2023-03-12 midnight plus 10 hours might
+  /// not be 10 a.m.
   startTime String
 
   /// The time that the doctor stops to work, in HH:mm:ss.SSS format
