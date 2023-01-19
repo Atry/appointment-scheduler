@@ -117,3 +117,9 @@ dist
 
 # Compiled code
 lib/
+
+# TypeDoc
+docs/
+
+# typescript-doctest
+/test/doc/
