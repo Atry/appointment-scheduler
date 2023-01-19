@@ -117,6 +117,10 @@
               "type": "build",
               "scope": "deps",
               "release": "patch"
+            },
+            {
+              "type": "docs",
+              "release": "patch"
             }
           ]
         }
