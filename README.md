@@ -1,23 +1,58 @@
-# Nexus Example With Prisma
+# Appointment Scheduler
 
-This example shows how to use Nexus with [Prisma](https://prisma.io) without the [Prisma plugin for Nexus](https://nxs.li/plugins/prisma). This approach is lower-level and here for reference reasons. Generally, you would want to use the Prisma plugin.
+A simple toy project of a GraphQL API for scheduling appointments with doctors.
 
-### Try It
+## Tech Stack
+
+This project is based on [Nexus Example With Prisma](https://github.com/graphql-nexus/nexus/tree/main/examples/with-prisma). In addition to the template project, the following libraries are introduced:
+
+- [graphql-scalars](https://github.com/Urigo/graphql-scalars) is used to validate duration types in GraphQL;
+- [date-fns](https://date-fns.org/) is used to manipulate UTC timestamps;
+- [moment-timezone](https://momentjs.com/timezone/) is used to handle date time in a certain timezone;
+- [nexus-prisma](https://github.com/graphql-nexus/nexus-prisma) is used to generate GraphQL fields from Prisma schema;
+- [fluent-iterable](https://github.com/codibre/fluent-iterable) is used to incrementally perform asynchronous operations;
+- [jest](https://jestjs.io/) and [ts-jest](https://github.com/kulshekhar/ts-jest) are used to run tests.
+
+## Directory layout
+
+- `api` includes the source code for the GraphQL server, including GraphQL types and resolvers
+  - `utils` includes the helper function to find available time slot for scheduling an appointment.
+- `prisma` includes O/R mapping schema, migration scripts, and seeding data.
+- `test` includes the test suite for the GraphQL API
+## Available scripts
+
+### Set up the development environment
 
 ```
-npm install
-npx prisma generate
-npx prisma migrate dev --preview-feature
+yarn install
 ```
 
-Terminal 1
+It will set up a Sqlite database for development purpose.
+
+### Start the GraphQL server in development mode
 
 ```
-npm run dev
+yarn dev
 ```
 
-Terminal 2
+Then you can open http://localhost:4000 to explore the GraphQL API.
+
+### Build
 
 ```
-npm run dev:typecheck
+yarn build
+```
+
+### Test
+
+```
+yarn test
+```
+
+Then check out `dist` directory for the compiled JavaScript files.
+
+### Start the GraphQL server in production mode
+
+```
+yarn start
 ```
