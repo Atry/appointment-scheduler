@@ -125,8 +125,8 @@ export async function* availableIntervals(
           deltaConcurrency: 1,
         },
       ].sort((a, b) => differenceInMilliseconds(a.dateTime, b.dateTime))
-      var concurrency = 1
-      var previousEventDateTime: Date | null = null
+      let concurrency = 1
+      let previousEventDateTime: Date | null = null
       for (const { dateTime, deltaConcurrency } of events) {
         if (concurrency === 0) {
           if (isBefore(previousEventDateTime!, dateTime)) {
