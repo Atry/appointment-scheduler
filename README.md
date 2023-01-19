@@ -24,7 +24,7 @@ This project is based on [Nexus Example With Prisma](https://github.com/graphql-
 ### Set up the development environment
 
 ```
-yarn install
+nodenv install && npm install --global yarn && yarn install
 ```
 
 It will set up a Sqlite database for development purpose.
