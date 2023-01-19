@@ -15,7 +15,7 @@ This project is based on [Nexus Example With Prisma](https://github.com/graphql-
 
 Note that multiple time libraries are introduced, because:
 
-- ECMAScript's `Date` is used because it's the date time type supported by Nexus and Prisma.
+- ECMAScript's `Date` is used because it's the only date time type supported by Nexus and Prisma.
 - `date-fns` is the most light-weight solution to manipulate `Date`.
 - We need a library to handle timezone, because a doctor might in a timezone different from the server's timezone. However, `date-fns` does not support timezone well.
   - `date-fns`'s sibling, `date-fns-tz`, is buggy for handling daylight saving time.
