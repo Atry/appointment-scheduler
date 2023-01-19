@@ -13,6 +13,10 @@
       ],
       "extensions": "md",
       "quiet": true
+    },
+    "ts-doctest": {
+      "patterns": "README.md",
+      "quiet": true
     }
   },
   "scripts": {
@@ -23,11 +27,14 @@
     "lint": "eslint ./src/ --fix",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
+    "ts-doctest:watch": "npm-watch ts-doctest",
+    "ts-doctest": "ts-doctest . test",
     "concat-md:watch": "npm-watch concat-md",
     "concat-md": "concat-md --toc --decrease-title-levels --dir-name-as-title docs > README.md",
     "typedoc:watch": "typedoc --watch",
     "test:watch": "jest --watch",
     "test": "jest --coverage",
+    "pretest": "npm run build && typedoc && npm run concat-md && npm run ts-doctest",
     "watch": "npm-run-all --race --parallel *:watch",
     "typecheck": "tsc --noEmit"
   },
@@ -83,7 +90,8 @@
     "ts-node": "^10.2.1",
     "typedoc": "^0.23.24",
     "typedoc-plugin-markdown": "^3.14.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "typescript-doctest": "git+https://gitlab.com/Atry/ts-doctest.git"
   },
   "config": {
     "commitizen": {
