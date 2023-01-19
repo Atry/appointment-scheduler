@@ -80,6 +80,9 @@ async function workingTimeOnDate(
 
 /**
  * Returns the doctor's available time slots after a certain time.
+ *
+ * Note that the return type is an infinite asynchronous iterable.
+ * The user of this function must not try to visit all its elements.
  */
 export async function* availableIntervals(
   prisma: PrismaClient,
