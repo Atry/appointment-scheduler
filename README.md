@@ -13,6 +13,14 @@ This project is based on [Nexus Example With Prisma](https://github.com/graphql-
 - [fluent-iterable](https://github.com/codibre/fluent-iterable) is used to incrementally perform asynchronous operations;
 - [jest](https://jestjs.io/) and [ts-jest](https://github.com/kulshekhar/ts-jest) are used to run tests.
 
+Note that multiple time libraries are introduced, because:
+
+- ECMAScript's `Date` is used because it's the date time type supported by Nexus and Prisma.
+- `date-fns` is the most light-weight solution to manipulate `Date`.
+- We need a library to handle timezone, because a doctor might in a timezone different from the server's timezone. However, `date-fns` does not support timezone well.
+  - `date-fns`'s sibling, `date-fns-tz`, is buggy for handling daylight saving time.
+  - `moment-timezone` is good for timezone handling, but the cost is that we have to use different API for manipulating local time and UTC time, respectively.
+
 ## Directory layout
 
 - `api` includes the source code for the GraphQL server, including GraphQL types and resolvers
