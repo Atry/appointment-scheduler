@@ -1,7 +1,7 @@
 import { UserInputError } from 'apollo-server'
 import isAfter from 'date-fns/isAfter'
 import isBefore from 'date-fns/isBefore'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import { arg, intArg, mutationType, nonNull, objectType } from 'nexus'
 import * as nexusPrisma from 'nexus-prisma'
 import { existingAppointments } from '../utils/existingAppointments'
