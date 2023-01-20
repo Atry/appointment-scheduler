@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-async function main() {
+export async function seed() {
   const prisma = new PrismaClient()
   try {
     const newYorkTimeZoneOffset = -5
@@ -99,4 +99,8 @@ async function main() {
   }
 }
 
-export = main()
+// This file can be either used as a ts-node script or a module.
+// If this file is executed as a script, performs `seed()` immediately.
+if (require.main === module) {
+  seed();
+}

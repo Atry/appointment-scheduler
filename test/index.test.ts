@@ -2,9 +2,10 @@ import { ApolloServer } from 'apollo-server'
 import { context } from '../api/context'
 import { schema } from '../api/schema'
 import { expect, beforeEach, test } from '@jest/globals'
+import { seed } from '../prisma/seed'
 
 beforeEach(async () => {
-  await require('../prisma/seed')
+  await seed()
 })
 
 test('Integration test', async () => {
