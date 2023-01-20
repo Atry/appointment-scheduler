@@ -1,10 +1,11 @@
-import { fluentAsync } from '@codibre/fluent-iterable'
 import { UserInputError } from 'apollo-server'
+import isAfter from 'date-fns/isAfter'
 import isBefore from 'date-fns/isBefore'
-import isEqual from 'date-fns/isEqual'
+import moment from 'moment'
 import { arg, intArg, mutationType, nonNull, objectType } from 'nexus'
 import * as nexusPrisma from 'nexus-prisma'
-import { availableIntervals } from '../utils/availableIntervals'
+import { existingAppointments } from '../utils/existingAppointments'
+import { workingTimeOnDate } from '../utils/workingTimeOnDate'
 
 export const Appointment = objectType({
   name: nexusPrisma.Appointment.$name,
@@ -31,30 +32,48 @@ export const MakeAppointment = mutationType({
         { doctorId, startDateTime, endDateTime },
         { prisma },
       ) {
-        const firstInterval = await fluentAsync(
-          availableIntervals(
-            prisma,
-            await prisma.doctor.findUniqueOrThrow({
-              where: { id: doctorId },
-            }),
-            startDateTime,
-          ),
-        ).first()
+        const doctor = await prisma.doctor.findUniqueOrThrow({
+          where: { id: doctorId },
+        })
+        const date = moment.tz(startDateTime, doctor.timeZone).startOf('day')
+        const workingTime = await workingTimeOnDate(prisma, doctor, date)
+        if (workingTime === null) {
+          throw new UserInputError('The doctor does not work on that day')
+        }
+        if (!isBefore(startDateTime, endDateTime)) {
+          throw new UserInputError('startDateTime should be before endDateTime')
+        }
+        if (isBefore(startDateTime, workingTime.startDateTime)) {
+          throw new UserInputError(
+            "startDateTime should not be before the doctor's working time",
+          )
+        }
+        if (isAfter(endDateTime, workingTime.endDateTime)) {
+          throw new UserInputError(
+            "endDateTime should not be before the doctor's working time",
+          )
+        }
         if (
-          firstInterval !== undefined &&
-          isEqual(firstInterval.startDateTime, startDateTime) &&
-          !isBefore(firstInterval.endDateTime, endDateTime)
-        ) {
-          return prisma.appointment.create({
-            data: {
-              doctorId,
+          (
+            await existingAppointments(
+              prisma,
+              doctor,
               startDateTime,
               endDateTime,
-            },
-          })
-        } else {
-          throw new UserInputError('the time slot is not available')
+            )
+          ).length !== 0
+        ) {
+          throw new UserInputError(
+            'the doctor is not available on the time slot',
+          )
         }
+        return prisma.appointment.create({
+          data: {
+            doctorId,
+            startDateTime,
+            endDateTime,
+          },
+        })
       },
     })
   },

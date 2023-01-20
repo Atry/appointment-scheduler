@@ -232,21 +232,21 @@ test('Integration test', async () => {
   `
   expect(await testServer.executeOperation({ query: invalidMutation }))
     .toMatchInlineSnapshot(`
-    {
-      "data": {
-        "makeAppointment": null,
-      },
-      "errors": [
-        [GraphQLError: the time slot is not available],
-      ],
-      "extensions": undefined,
-      "http": {
-        "headers": Headers {
-          Symbol(map): {},
+      {
+        "data": {
+          "makeAppointment": null,
         },
-      },
-    }
-  `)
+        "errors": [
+          [GraphQLError: endDateTime should not be before the doctor's working time],
+        ],
+        "extensions": undefined,
+        "http": {
+          "headers": Headers {
+            Symbol(map): {},
+          },
+        },
+      }
+    `)
   const mutation = `
     mutation MakeAppointment {
       makeAppointment(
