@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import differenceInMilliseconds from 'date-fns/differenceInMilliseconds'
 import isBefore from 'date-fns/isBefore'
 import max from 'date-fns/max'
+import min from 'date-fns/min'
 import moment from 'moment-timezone'
 import { existingAppointments } from './existingAppointments'
 import { workingTimeOnDate } from './workingTimeOnDate'
@@ -17,19 +18,22 @@ export async function* availableIntervals(
   prisma: PrismaClient,
   doctor: prismaClient.Doctor,
   after: Date,
+  before: Date,
 ): AsyncIterable<{
   startDateTime: Date
   endDateTime: Date
 }> {
+  const firstDay = moment.tz(after, doctor.timeZone).startOf('day')
+  const lastDay = moment.tz(before, doctor.timeZone).startOf('day')
   for (
-    const date = moment.tz(after, doctor.timeZone).startOf('day');
-    ;
+    const date = firstDay.clone();
+    date.isSameOrBefore(lastDay);
     date.add(1, 'day')
   ) {
     const workingTime = await workingTimeOnDate(prisma, doctor, date)
     if (workingTime !== null) {
       const minEventDateTime = max([after, workingTime.startDateTime])
-      const maxEventDateTime = workingTime.endDateTime
+      const maxEventDateTime = min([before, workingTime.endDateTime])
       const unavailableIntervals = await existingAppointments(
         prisma,
         doctor,

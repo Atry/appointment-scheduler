@@ -1,6 +1,5 @@
 import { fluentAsync } from '@codibre/fluent-iterable'
 import differenceInMilliseconds from 'date-fns/differenceInMilliseconds'
-import isBefore from 'date-fns/isBefore'
 import moment from 'moment-timezone'
 import { arg, intArg, nonNull, objectType, queryType } from 'nexus'
 import * as nexusPrisma from 'nexus-prisma'
@@ -32,13 +31,13 @@ export const Doctor = objectType({
       },
       async resolve(doctor, { after, before, minLength }, { prisma }) {
         return (
-          await fluentAsync(availableIntervals(prisma, doctor, after))
-            .takeWhile(({ endDateTime }) => isBefore(endDateTime, before))
-            .first(
-              ({ startDateTime, endDateTime }) =>
-                differenceInMilliseconds(endDateTime, startDateTime) >=
-                moment.duration(minLength).asMilliseconds(),
-            )
+          await fluentAsync(
+            availableIntervals(prisma, doctor, after, before),
+          ).first(
+            ({ startDateTime, endDateTime }) =>
+              differenceInMilliseconds(endDateTime, startDateTime) >=
+              moment.duration(minLength).asMilliseconds(),
+          )
         )?.startDateTime
       },
       type: 'DateTime',
@@ -69,13 +68,12 @@ export const Doctor = objectType({
         },
       }),
       resolve(doctor, { after, before, minLength }, { prisma }) {
-        return fluentAsync(availableIntervals(prisma, doctor, after))
+        return fluentAsync(availableIntervals(prisma, doctor, after, before))
           .filter(
             ({ endDateTime, startDateTime }) =>
               differenceInMilliseconds(endDateTime, startDateTime) >=
               moment.duration(minLength).asMilliseconds(),
           )
-          .takeWhile(({ endDateTime }) => isBefore(endDateTime, before))
           .toArray()
       },
     })
