@@ -99,7 +99,7 @@ export async function seed() {
   }
 }
 
-// This file can be either used as a ts-node script or a module.
+// This file can be either used as either a ts-node script or a module.
 // If this file is executed as a script, performs `seed()` immediately.
 if (require.main === module) {
   seed();
