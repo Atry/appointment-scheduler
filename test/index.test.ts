@@ -88,127 +88,123 @@ test('Integration test', async () => {
   expect(await testServer.executeOperation({ query })).toMatchInlineSnapshot(`
     {
       "data": {
-        "doctor1": [
-          {
-            "availableFourHourIntervals": [
-              {
-                "endDateTime": 2023-01-21T19:00:00.000Z,
-                "startDateTime": 2023-01-21T15:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-22T19:00:00.000Z,
-                "startDateTime": 2023-01-22T15:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-23T22:00:00.000Z,
-                "startDateTime": 2023-01-23T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-24T22:00:00.000Z,
-                "startDateTime": 2023-01-24T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-25T22:00:00.000Z,
-                "startDateTime": 2023-01-25T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-26T22:00:00.000Z,
-                "startDateTime": 2023-01-26T14:00:00.000Z,
-              },
-            ],
-            "availableOneHourIntervals": [
-              {
-                "endDateTime": 2023-01-20T18:00:00.000Z,
-                "startDateTime": 2023-01-20T16:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-20T22:00:00.000Z,
-                "startDateTime": 2023-01-20T19:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-21T19:00:00.000Z,
-                "startDateTime": 2023-01-21T15:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-22T19:00:00.000Z,
-                "startDateTime": 2023-01-22T15:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-23T22:00:00.000Z,
-                "startDateTime": 2023-01-23T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-24T22:00:00.000Z,
-                "startDateTime": 2023-01-24T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-25T22:00:00.000Z,
-                "startDateTime": 2023-01-25T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-26T22:00:00.000Z,
-                "startDateTime": 2023-01-26T14:00:00.000Z,
-              },
-            ],
-            "availableThirtyMinuteIntervals": [
-              {
-                "endDateTime": 2023-01-20T15:30:00.000Z,
-                "startDateTime": 2023-01-20T15:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-20T18:00:00.000Z,
-                "startDateTime": 2023-01-20T16:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-20T22:00:00.000Z,
-                "startDateTime": 2023-01-20T19:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-21T19:00:00.000Z,
-                "startDateTime": 2023-01-21T15:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-22T19:00:00.000Z,
-                "startDateTime": 2023-01-22T15:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-23T22:00:00.000Z,
-                "startDateTime": 2023-01-23T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-24T22:00:00.000Z,
-                "startDateTime": 2023-01-24T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-25T22:00:00.000Z,
-                "startDateTime": 2023-01-25T14:00:00.000Z,
-              },
-              {
-                "endDateTime": 2023-01-26T22:00:00.000Z,
-                "startDateTime": 2023-01-26T14:00:00.000Z,
-              },
-            ],
-            "firstFourHourAvailableTime": 2023-01-21T15:00:00.000Z,
-            "firstOneHourAvailableTime": 2023-01-20T16:00:00.000Z,
-            "firstTenHourAvailableTime": null,
-            "firstThirtyMinuteAvailableTime": 2023-01-20T16:00:00.000Z,
-            "id": 1,
-            "name": "Strange",
-          },
-        ],
-        "doctor2": [
-          {
-            "availableIntervals": [
-              {
-                "endDateTime": 2023-01-23T21:00:00.000Z,
-                "startDateTime": 2023-01-23T13:00:00.000Z,
-              },
-            ],
-            "firstAvailableTime": 2023-01-23T13:00:00.000Z,
-            "id": 2,
-            "name": "Who",
-          },
-        ],
+        "doctor1": {
+          "availableFourHourIntervals": [
+            {
+              "endDateTime": 2023-01-21T19:00:00.000Z,
+              "startDateTime": 2023-01-21T15:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-22T19:00:00.000Z,
+              "startDateTime": 2023-01-22T15:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-23T22:00:00.000Z,
+              "startDateTime": 2023-01-23T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-24T22:00:00.000Z,
+              "startDateTime": 2023-01-24T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-25T22:00:00.000Z,
+              "startDateTime": 2023-01-25T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-26T22:00:00.000Z,
+              "startDateTime": 2023-01-26T14:00:00.000Z,
+            },
+          ],
+          "availableOneHourIntervals": [
+            {
+              "endDateTime": 2023-01-20T18:00:00.000Z,
+              "startDateTime": 2023-01-20T16:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-20T22:00:00.000Z,
+              "startDateTime": 2023-01-20T19:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-21T19:00:00.000Z,
+              "startDateTime": 2023-01-21T15:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-22T19:00:00.000Z,
+              "startDateTime": 2023-01-22T15:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-23T22:00:00.000Z,
+              "startDateTime": 2023-01-23T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-24T22:00:00.000Z,
+              "startDateTime": 2023-01-24T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-25T22:00:00.000Z,
+              "startDateTime": 2023-01-25T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-26T22:00:00.000Z,
+              "startDateTime": 2023-01-26T14:00:00.000Z,
+            },
+          ],
+          "availableThirtyMinuteIntervals": [
+            {
+              "endDateTime": 2023-01-20T15:30:00.000Z,
+              "startDateTime": 2023-01-20T15:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-20T18:00:00.000Z,
+              "startDateTime": 2023-01-20T16:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-20T22:00:00.000Z,
+              "startDateTime": 2023-01-20T19:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-21T19:00:00.000Z,
+              "startDateTime": 2023-01-21T15:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-22T19:00:00.000Z,
+              "startDateTime": 2023-01-22T15:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-23T22:00:00.000Z,
+              "startDateTime": 2023-01-23T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-24T22:00:00.000Z,
+              "startDateTime": 2023-01-24T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-25T22:00:00.000Z,
+              "startDateTime": 2023-01-25T14:00:00.000Z,
+            },
+            {
+              "endDateTime": 2023-01-26T22:00:00.000Z,
+              "startDateTime": 2023-01-26T14:00:00.000Z,
+            },
+          ],
+          "firstFourHourAvailableTime": 2023-01-21T15:00:00.000Z,
+          "firstOneHourAvailableTime": 2023-01-20T16:00:00.000Z,
+          "firstTenHourAvailableTime": null,
+          "firstThirtyMinuteAvailableTime": 2023-01-20T16:00:00.000Z,
+          "id": 1,
+          "name": "Strange",
+        },
+        "doctor2": {
+          "availableIntervals": [
+            {
+              "endDateTime": 2023-01-23T21:00:00.000Z,
+              "startDateTime": 2023-01-23T13:00:00.000Z,
+            },
+          ],
+          "firstAvailableTime": 2023-01-23T13:00:00.000Z,
+          "id": 2,
+          "name": "Who",
+        },
       },
       "errors": undefined,
       "extensions": undefined,

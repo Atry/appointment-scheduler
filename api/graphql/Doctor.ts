@@ -82,13 +82,13 @@ export const Doctor = objectType({
 
 export const DoctorQuery = queryType({
   definition(t) {
-    t.nonNull.list.field('doctor', {
+    t.nonNull.field('doctor', {
       type: 'Doctor',
       args: {
         id: nonNull(intArg()),
       },
       resolve(_source, { id }, { prisma }) {
-        return prisma.doctor.findMany({
+        return prisma.doctor.findUniqueOrThrow({
           where: { id },
         })
       },
