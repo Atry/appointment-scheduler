@@ -20,7 +20,8 @@ model Doctor {
 }
 
 model DailyWorkingTime {
-  /// For which day-of-week this DailyWorkingTime describes
+  /// For which day-of-week this DailyWorkingTime describes.
+  ///
   /// 0 for Sunday, 1 for Monday, etc.
   dayOfWeek Int
 
@@ -29,10 +30,10 @@ model DailyWorkingTime {
 
   /// The time that the doctor starts to work, in HH:mm:ss.SSS format
   ///
-  /// Note that it represents the clock time without date part, not the offset from
-  /// midnight, because storing the offset would result in supprising behavior when
-  /// shifting daylight saving time, e.g. 2023-03-12 midnight plus 10 hours might
-  /// not be 10 a.m.
+  /// Note that it represents the clock time without date part, not the offset
+  /// from midnight, because storing the offset would result in supprising
+  /// behavior when shifting daylight saving time, e.g. 2023-03-12 midnight plus
+  /// 10 hours might not be 10 a.m.
   startTime String
 
   /// The time that the doctor stops to work, in HH:mm:ss.SSS format
